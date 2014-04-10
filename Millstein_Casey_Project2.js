@@ -21,18 +21,22 @@ function procedureFunction(ans) {
 
 function booleanFunction(confirm, arg = "1") {
     var ingredientsNeeded = ["eggs", "milk", "banana", "flour", "cinnamon", "sugar"];
-    var ingredientsHave = ["eggs", "flour", "sugar"];
-    var i = 0,o = 0, needSomething = false;
-
-    while (i <= ingredientsNeeded) {
-      while (o <= ingredientsHave) {
-        if (ingredientsHave[o] == ingredientsNeed[i]) {
+    var ingredientsHave = ["eggs", "milk", "banana", "flour", "cinnamon", "sugar"];
+    var i = 0;
+    var o = 0;
+    var needSomething = false;
+    
+    outer_loop:
+    while (i < ingredientsNeeded.length) {
+      while (o < ingredientsHave.length) {
+        if (ingredientsHave[o] == ingredientsNeeded[i]) {
           console.log('I have '+ ingredientsHave[o] );
-          break;
+          i++;
+          continue outer_loop;
         }
         o++;
       }
-      console.log('I need '+ ingredientsNeed[i] );
+      console.log('I need '+ ingredientsNeeded[i] );
       needSomething = true; 
       i++;
     }
@@ -96,7 +100,7 @@ cookingQuestion = window.prompt('Will you be cooking banana bread tonight?', 'ye
 var timeToCook = procedureFunction(cookingQuestion);
 
 if (timeToCook) {
-    ingredientsConfirm = window.confirm('The ingredients needed are sugar, flour, cinnamon, bananas, milk and eggs.  Do you have these ingredients?');
+    ingredientsConfirm = window.confirm('Do you have the ingredients needed?');
 
     if (ingredientsConfirm) {
       var checkIng = booleanFunction(ingredientsConfirm, '1');
